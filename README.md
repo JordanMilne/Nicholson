@@ -28,4 +28,4 @@ For an example of a completed attack, see `nicholson_test_auto.html`
 Demo
 ====
 
-A live version found be seen [here](http://jordanmilne.github.io/Nicholson/), but note that Nicholson (especially the Selector-based editor) works best when served from a server that you control.
+A live version can be found [here](http://jordanmilne.github.io/Nicholson/), but note that Nicholson (especially the Selector-based editor) works best when served from a server that you control.
