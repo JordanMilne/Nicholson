@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Nicholson Test</title>
+    <script src="js/dist/jquery.min.js"></script>
+    <script src="js/dist/jquery-migrate.core.js"></script>
+    <script src="js/nicholson_utils.js"></script>
+    <style>
+        body {
+            background-color:rgb(197, 204, 211);
+        }
+        #scroller {
+            padding:0;
+            margin:0;
+            overflow:hidden;
+        }
+        #jackFrame {
+            border:none;
+            overflow-y:hidden;
+            background: transparent;
+            padding:0;
+            margin:0;
+        }
+    </style>
+    <script>
+        $(function(){
+            var jackParams = {};
+
+            var userAgent = navigator.appVersion.toUpperCase();
+
+            // Windows
+            if(userAgent.indexOf("WIN")!=-1) {
+                // Webkit something or another?
+                if($.browser.webkit) {
+                    jackParams = {"iframeSrc":"tests/a.html","iframeWidth":2000,"iframeHeight":2000,"scrollLeft":"11","scrollTop":"227","viewPortHeight":"20","viewPortWidth":"40","sandbox":true,"allowScripts":true,"allowTopNavigation":false,"allowSameOrigin":true,"allowForms":true};
+                } else if($.browser.mozilla) {
+                    jackParams = {"iframeSrc":"tests/a.html","iframeWidth":2000,"iframeHeight":2000,"scrollLeft":"9","scrollTop":"226","viewPortHeight":"22","viewPortWidth":"49","sandbox":true,"allowScripts":true,"allowTopNavigation":false,"allowSameOrigin":true,"allowForms":true};
+                }
+                // MSIE???
+                else {
+                    jackParams = {"iframeSrc":"tests/a.html","iframeWidth":2000,"iframeHeight":2000,"scrollLeft":"8","scrollTop":"217","viewPortHeight":"23","viewPortWidth":"49","sandbox":true,"allowScripts":true,"allowTopNavigation":false,"allowSameOrigin":true,"allowForms":true};
+                }
+            }
+            // Linux or something, IDK, I don't have a Mac to test with.
+            else {
+                if($.browser.mozilla) {
+                    jackParams = {"iframeSrc":"tests/a.html","iframeWidth":2000,"iframeHeight":2000,"scrollLeft":"8","scrollTop":"223","viewPortHeight":"20","viewPortWidth":"45","sandbox":true,"allowScripts":true,"allowTopNavigation":false,"allowSameOrigin":true,"allowForms":true};
+                }
+                // Webkit something or another?
+                else {
+                    jackParams = {"iframeSrc":"tests/a.html","iframeWidth":2000,"iframeHeight":2000,"scrollLeft":"10","scrollTop":"226","viewPortHeight":"22","viewPortWidth":"43","sandbox":true,"allowScripts":true,"allowTopNavigation":false,"allowSameOrigin":true,"allowForms":true};
+                }
+            }
+            setIframeParams($("#jackFrame"), $("#scroller"), jackParams);
+        });
+    </script>
+</head>
+<body>
+    <h2>The test page's UI redressed:</h2>
+    Do you love ice cream?
+    <!-- Preview iframe -->
+    <div id="scroller">
+        <iframe id="jackFrame" scrolling="no"></iframe>
+    </div>
+
+    <h2>The un-obscured test page:</h2>
+    <iframe src="tests/a.html"></iframe>
+</body>
+</html>

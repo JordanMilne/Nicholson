@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Nicholson Test</title>
+    <script src="js/dist/jquery.min.js"></script>
+    <script src="js/dist/jquery-migrate.core.js"></script>
+    <script src="js/nicholson_utils.js"></script>
+    <style>
+        body {
+            background-color:rgb(197, 204, 211);
+        }
+        .scroller {
+            padding:0;
+            margin:0;
+            opacity: 0.25;
+            overflow:hidden;
+        }
+        .jackFrame {
+            border:none;
+            overflow-y:hidden;
+            background: transparent;
+            padding:0;
+            margin:0;
+        }
+    </style>
+    <script>
+        $(function(){
+            // For the sake of this example, pretend that a.html is a
+            // cross-origin resource and b.html is a similar resource
+            // that is same-origin
+            var jackParams = {"iframeSrc":"tests/a.html","configIframeSrc":"tests/b.html","selector":"#coolButton","iframeWidth":2000,"iframeHeight":2000,"sandbox":true,"allowScripts":true,"allowTopNavigation":false,"allowSameOrigin":true,"allowForms":true};
+
+            // Figure out what settings should be applied to the iframe and scroller
+            calcViewportParams(jackParams, function(viewPortParams) {
+                var scroller = $("#scroller");
+
+                // Set the height and width for the iframe,
+                // and scrollTop / scrollLeft for the scroller
+                setIframeParams(scroller.find('iframe'), scroller, $.extend(jackParams, viewPortParams));
+
+                // Makes copies of the iframe across the entire element
+                tileNicholsonIframeOver(scroller, $("#yep"));
+            });
+        });
+    </script>
+</head>
+<body>
+    <h2>The test page's UI redressed:</h2>
+    Do you love ice cream?
+    <input type="button" id="yep" value="Yes sir!
+    newline" />
+    <!-- Preview iframe -->
+    <div class="scroller" id="scroller">
+        <iframe class="jackFrame" id="jackFrame" scrolling="no"></iframe>
+    </div>
+
+    <h2>The un-obscured test page:</h2>
+    <iframe src="tests/a.html"></iframe>
+</body>
+</html>

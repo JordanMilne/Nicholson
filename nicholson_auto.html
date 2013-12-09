@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<!-- 
+Some junk to make it easy to demo clickjacking attacks.
+-->
+<head>
+    <title>Nicholson Clickjacking Helper</title>
+    <script src="js/dist/jquery.min.js"></script>
+    <script src="js/dist/jquery-migrate.core.js"></script>
+    <script src="js/nicholson_utils.js"></script>
+    <script src="js/nicholson_editor.js"></script>
+    <script src="js/nicholson_auto.js"></script>
+    <style>
+        body {
+            background-color:rgb(197, 204, 211);
+        }
+        .scroller {
+            padding:0;
+            margin:0;
+            overflow:hidden;
+        }
+        .jackFrame {
+            border:none;
+            overflow-y:hidden;
+            background: transparent;
+            padding:0;
+            margin:0;
+        }
+        .angry {
+            color: red;
+            font-weight: bold;
+        }
+
+    </style>
+    <script>
+        $(function() {
+            initNicholson();
+
+            watchAutoConfigForm();
+        });
+    </script>
+</head>
+    
+<body>
+    <!-- Preview iframe -->
+    <div class="scroller" id="scroller">
+        <iframe class="jackFrame" id="jackFrame" scrolling="no"></iframe>
+    </div>
+
+    <!-- Configuration inputs -->
+    <form>
+        <label for="iframeSrc">iframe src</label>
+        <input type="text" id="iframeSrc" /><br/>
+        <label for="configIframeSrc">Config iframe src</label>
+        <input type="text" id="configIframeSrc" /> <span id="sopWarning">*(Must exist and be same-origin)</span><br/>
+        <label for="selector">Selector to clickjack</label>
+        <input type="text" id="selector" /><br/>
+        <label for="iframeWidth">iframe Width</label>
+        <input type="text" id="iframeWidth" /><br/>
+        <label for="iframeHeight">iframe Height</label>
+        <input type="text" id="iframeHeight" /><br/>
+        <label for="scrollLeft">Viewport scrollLeft</label>
+        <input type="text" id="scrollLeft" disabled="disabled" /><br/>
+        <label for="scrollTop">Viewport scrollTop</label>
+        <input type="text" id="scrollTop" disabled="disabled" /><br/>
+        <label for="viewPortWidth">Viewport Width</label>
+        <input type="text" id="viewPortWidth" disabled="disabled" /><br/>
+        <label for="viewPortHeight">Viewport Height</label>
+        <input type="text" id="viewPortHeight" disabled="disabled" /><br/>
+        <p>(Hit enter to apply changes)</p>
+
+        <br/><br/>
+
+        <h2>Sandbox Settings (will force page reload)</h2>
+        <label for="sandbox">Sandbox</label>
+        <input id="sandbox" type="checkbox" />&nbsp;|&nbsp;
+        <label for="allowScripts">Allow Scripts</label>
+        <input class="sandboxParam" id="allowScripts" type="checkbox" />&nbsp;|&nbsp;
+        <label for="allowTopNavigation">Allow Top Navigation</label>
+        <input class="sandboxParam" id="allowTopNavigation" type="checkbox" />&nbsp;|&nbsp;
+        <label for="allowSameOrigin">Allow Same-Origin</label>
+        <input class="sandboxParam" id="allowSameOrigin" type="checkbox" />&nbsp;|&nbsp;
+        <label for="allowForms">Allow Forms</label>
+        <input class="sandboxParam" id="allowForms" type="checkbox" />
+
+        <br/><br/>
+
+        <h2>Import/Export</h2>
+        <input id="importJSON" type="button" value="Import JSON" />&nbsp;
+        <input id="exportJSON" type="button" value="Export JSON" />
+        <br/>
+        <textarea cols="100" rows="5" id="inputOutput"></textarea>
+
+    </form>
+</body>
+</html>
