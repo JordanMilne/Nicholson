@@ -24,3 +24,8 @@ The interesting bit is the selector-based clickjacking support. For this, you ne
 Using this method, we can avoid having to manually determine the viewport with every possible browser the attacker might use. This method also accounts for any differences in browser configuration (default font size, ad blocking, etc.)
 
 For an example of a completed attack, see `nicholson_test_auto.html`
+
+Demo
+====
+
+A live version found be seen [here](http://jordanmilne.github.io/Nicholson/), but note that Nicholson (especially the Selector-based editor) works best when served from a server that you control.
